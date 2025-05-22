@@ -1,7 +1,6 @@
 return {
   {
     "stevearc/conform.nvim",
-    -- event = 'BufWritePre', -- uncomment for format on save
     opts = require "configs.conform",
   },
 
@@ -31,6 +30,16 @@ return {
     dependencies = {
       "MunifTanjim/nui.nvim",
       "rcarriga/nvim-notify",
+    },
+  },
+
+  -- For autoSave
+  {
+    "okuuva/auto-save.nvim",
+    cmd = "ASToggle",
+    event = { "InsertLeave", "TextChanged" },
+    opts = {
+      -- add yours options here
     },
   },
 
