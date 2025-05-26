@@ -18,7 +18,15 @@ local servers = {
   intelephense = {},
   jdtls = {},
   jsonls = {},
-  lua_ls = {},
+  lua_ls = {
+    settings = {
+        Lua = {
+            diagnostics = {
+                globals = { 'vim' }
+            }
+        }
+    }
+  },
   phpactor = {},
   pyright = {},
   quick_lint_js = {},
