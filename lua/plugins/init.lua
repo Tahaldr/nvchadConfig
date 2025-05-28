@@ -43,6 +43,7 @@ return {
     },
   },
 
+  -- Break bad habits, master Vim motions
   {
     "m4xshen/hardtime.nvim",
     lazy = false,
@@ -54,6 +55,8 @@ return {
   -- :Hardtime disable disable Hardtime
   -- :Hardtime toggle toggle Hardtime
 
+  -- flash.nvim lets you navigate your code with search labels, enhanced character motions,
+  -- and Treesitter integration.
   {
     "folke/flash.nvim",
     event = "VeryLazy",
