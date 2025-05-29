@@ -3,11 +3,8 @@ local on_attach = nvlsp.on_attach
 local on_init = nvlsp.on_init
 local capabilities = nvlsp.capabilities
 
-local lspconfig = require "lspconfig"
-
 nvlsp.defaults()
 
--- Define your installed servers with custom config for emmet_ls
 local servers = {
   cssls = {},
   css_variables = {},
@@ -20,12 +17,12 @@ local servers = {
   jsonls = {},
   lua_ls = {
     settings = {
-        Lua = {
-            diagnostics = {
-                globals = { 'vim' }
-            }
-        }
-    }
+      Lua = {
+        diagnostics = {
+          globals = { 'vim' },
+        },
+      },
+    },
   },
   phpactor = {},
   pyright = {},
@@ -50,29 +47,27 @@ local servers = {
     },
     filetypes = {
       "css",
-      "eruby",
       "html",
-      "php",
       "javascript",
       "javascriptreact",
       "less",
       "sass",
       "scss",
-      "pug",
+      -- "pug",
       "typescriptreact",
-      "blade",
     },
   },
 }
 
--- LSP Setup loop
+-- Define configurations using Neovim 0.11+ API
 for server, config in pairs(servers) do
-  lspconfig[server].setup(vim.tbl_extend("force", {
+  vim.lsp.config(server, vim.tbl_extend("force", {
     on_attach = on_attach,
     on_init = on_init,
     capabilities = capabilities,
   }, config))
 end
 
+-- Enable all defined servers
+vim.lsp.enable(vim.tbl_keys(servers))
 
--- read h vim.lsp.config for changing options of lsp servers 
