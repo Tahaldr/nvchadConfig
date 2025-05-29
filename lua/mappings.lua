@@ -13,7 +13,7 @@ map("i", "jj", "<ESC>")
 -- for exiting terminal
 map('t', '<ESC>', [[<C-\><C-n>]], { noremap = true, silent = true })
 
--- Move lines up and down (Normal mode)
+-- Move lines up/down (Normal mode)
 map("n", "<A-j>", ":m .+1<CR>==", { desc = "Move line down" })
 map("n", "<A-k>", ":m .-2<CR>==", { desc = "Move line up" })
 
