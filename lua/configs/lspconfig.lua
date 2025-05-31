@@ -19,7 +19,7 @@ local servers = {
     settings = {
       Lua = {
         diagnostics = {
-          globals = { 'vim' },
+          globals = { "vim" },
         },
       },
     },
@@ -29,7 +29,15 @@ local servers = {
   quick_lint_js = {},
   stimulus_ls = {},
   tailwindcss = {},
-  ts_ls = {},
+  ts_ls = {
+    on_attach = function(client, bufnr)
+      -- Disable diagnostics for this LSP manually
+      client.handlers["textDocument/publishDiagnostics"] = function() end
+
+      -- Call the shared on_attach to keep other features
+      on_attach(client, bufnr)
+    end,
+  },
   vtsls = {},
   yamlls = {},
   emmet_ls = {
@@ -53,21 +61,23 @@ local servers = {
       "less",
       "sass",
       "scss",
-      -- "pug",
       "typescriptreact",
+      -- "pug",
     },
   },
 }
 
 -- Define configurations using Neovim 0.11+ API
 for server, config in pairs(servers) do
-  vim.lsp.config(server, vim.tbl_extend("force", {
-    on_attach = on_attach,
-    on_init = on_init,
-    capabilities = capabilities,
-  }, config))
+  vim.lsp.config(
+    server,
+    vim.tbl_extend("force", {
+      on_attach = on_attach,
+      on_init = on_init,
+      capabilities = capabilities,
+    }, config)
+  )
 end
 
 -- Enable all defined servers
 vim.lsp.enable(vim.tbl_keys(servers))
-
