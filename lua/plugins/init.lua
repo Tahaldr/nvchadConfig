@@ -23,13 +23,11 @@ return {
     "folke/noice.nvim",
     config = require "configs.noice",
     event = "VeryLazy",
-    cmdline = {
-      view = "cmdline_popup",
-    },
+    opts = {},
 
     dependencies = {
       "MunifTanjim/nui.nvim",
-      "rcarriga/nvim-notify",
+      -- "rcarriga/nvim-notify",
     },
   },
 
